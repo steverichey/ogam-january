@@ -215,6 +215,23 @@ int main(int argc, const char * argv[]) {
     int enemy_move_y = -1;
     int enemy_move_x_speed = 1;
     int enemy_move_y_speed = 1;
+    Mix_Chunk *bounce = Mix_LoadWAV("Resources/bounce.wav");
+    
+    //if (music == nullptr || bounce == nullptr) {
+    if (bounce == nullptr) {
+        log_error("Sound load error");
+        TTF_CloseFont(game_font);
+        SDL_DestroyTexture(player);
+        SDL_DestroyTexture(background);
+        SDL_DestroyTexture(enemy);
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        Mix_CloseAudio();
+        IMG_Quit();
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
     
     // calculate the number of tiles to fill the screen
     int xTiles = SCREEN_WIDTH / TILE_SIZE;
