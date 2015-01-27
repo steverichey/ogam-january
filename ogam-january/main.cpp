@@ -22,6 +22,7 @@
 #define FONT_OFFSET 16
 #define SCORE_PREFIX "Score "
 #define ENTITY_SIZE 32
+#define SCORE_INCREMENT_LIMIT 10
 
 // log anything to the console
 void log(const std::string &message) {
