@@ -163,6 +163,8 @@ int main(int argc, const char * argv[]) {
     
     // score tracking
     int score = 0;
+    int score_counter = 0;
+    std::string score_string = "";
     
     // load font
     std::string font_path = "Resources/ivory.ttf";
@@ -311,7 +313,12 @@ int main(int argc, const char * argv[]) {
         }
         
         // update score
-        score++;
+        score_counter++;
+        
+        if (score_counter > SCORE_INCREMENT_LIMIT) {
+            score_counter = 0;
+            score++;
+        }
         
         // clear renderer
         SDL_RenderClear(renderer);
@@ -330,7 +337,8 @@ int main(int argc, const char * argv[]) {
         render_texture(player, renderer, player_x, player_y);
         
         // draw the text
-        render_text(SCORE_PREFIX, game_font, font_color, renderer, FONT_OFFSET, FONT_OFFSET);
+        score_string = SCORE_PREFIX + std::to_string(score);
+        render_text(score_string, game_font, font_color, renderer, FONT_OFFSET, FONT_OFFSET);
         
         // lose state checking
         if (player_x + ENTITY_SIZE > enemy_x) {
