@@ -7,34 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9314C5531A7549610008AA6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9314C5521A7549610008AA6F /* AppDelegate.m */; };
-		9314C5551A7549610008AA6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9314C5541A7549610008AA6F /* main.m */; };
-		9314C5571A7549610008AA6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9314C5561A7549610008AA6F /* Images.xcassets */; };
-		9314C55A1A7549610008AA6F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9314C5581A7549610008AA6F /* MainMenu.xib */; };
-		9314C5661A7549620008AA6F /* ogam_januaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9314C5651A7549620008AA6F /* ogam_januaryTests.m */; };
+		9314C5551A7549610008AA6F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9314C5541A7549610008AA6F /* main.cpp */; };
+		9314C57E1A754C3F0008AA6F /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9314C56F1A7549BA0008AA6F /* SDL2_image.framework */; };
+		9314C57F1A754C3F0008AA6F /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9314C5701A7549BA0008AA6F /* SDL2_ttf.framework */; };
+		9314C5801A754C3F0008AA6F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9314C5711A7549BA0008AA6F /* SDL2.framework */; };
+		93E145AA1A7719C80093E7FE /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 93E145A91A7719C80093E7FE /* Resources */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9314C5601A7549620008AA6F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9314C5441A7549610008AA6F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9314C54B1A7549610008AA6F;
-			remoteInfo = "ogam-january";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9314C54C1A7549610008AA6F /* ogam-january.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ogam-january.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9314C5501A7549610008AA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9314C5511A7549610008AA6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9314C5521A7549610008AA6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9314C5541A7549610008AA6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9314C5561A7549610008AA6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9314C5591A7549610008AA6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		9314C55F1A7549620008AA6F /* ogam-januaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ogam-januaryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9314C5641A7549620008AA6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9314C5651A7549620008AA6F /* ogam_januaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ogam_januaryTests.m; sourceTree = "<group>"; };
+		9314C5541A7549610008AA6F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9314C56F1A7549BA0008AA6F /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		9314C5701A7549BA0008AA6F /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		9314C5711A7549BA0008AA6F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		9314C57C1A754BCE0008AA6F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93E145A91A7719C80093E7FE /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,13 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9314C55C1A7549610008AA6F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				9314C57E1A754C3F0008AA6F /* SDL2_image.framework in Frameworks */,
+				9314C57F1A754C3F0008AA6F /* SDL2_ttf.framework in Frameworks */,
+				9314C5801A754C3F0008AA6F /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +41,10 @@
 		9314C5431A7549610008AA6F = {
 			isa = PBXGroup;
 			children = (
+				9314C56F1A7549BA0008AA6F /* SDL2_image.framework */,
+				9314C5701A7549BA0008AA6F /* SDL2_ttf.framework */,
+				9314C5711A7549BA0008AA6F /* SDL2.framework */,
 				9314C54E1A7549610008AA6F /* ogam-january */,
-				9314C5621A7549620008AA6F /* ogam-januaryTests */,
 				9314C54D1A7549610008AA6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				9314C54C1A7549610008AA6F /* ogam-january.app */,
-				9314C55F1A7549620008AA6F /* ogam-januaryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,39 +60,11 @@
 		9314C54E1A7549610008AA6F /* ogam-january */ = {
 			isa = PBXGroup;
 			children = (
-				9314C5511A7549610008AA6F /* AppDelegate.h */,
-				9314C5521A7549610008AA6F /* AppDelegate.m */,
-				9314C5561A7549610008AA6F /* Images.xcassets */,
-				9314C5581A7549610008AA6F /* MainMenu.xib */,
-				9314C54F1A7549610008AA6F /* Supporting Files */,
+				9314C57C1A754BCE0008AA6F /* Info.plist */,
+				9314C5541A7549610008AA6F /* main.cpp */,
+				93E145A91A7719C80093E7FE /* Resources */,
 			);
 			path = "ogam-january";
-			sourceTree = "<group>";
-		};
-		9314C54F1A7549610008AA6F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9314C5501A7549610008AA6F /* Info.plist */,
-				9314C5541A7549610008AA6F /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9314C5621A7549620008AA6F /* ogam-januaryTests */ = {
-			isa = PBXGroup;
-			children = (
-				9314C5651A7549620008AA6F /* ogam_januaryTests.m */,
-				9314C5631A7549620008AA6F /* Supporting Files */,
-			);
-			path = "ogam-januaryTests";
-			sourceTree = "<group>";
-		};
-		9314C5631A7549620008AA6F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9314C5641A7549620008AA6F /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,24 +87,6 @@
 			productReference = 9314C54C1A7549610008AA6F /* ogam-january.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9314C55E1A7549610008AA6F /* ogam-januaryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9314C56C1A7549620008AA6F /* Build configuration list for PBXNativeTarget "ogam-januaryTests" */;
-			buildPhases = (
-				9314C55B1A7549610008AA6F /* Sources */,
-				9314C55C1A7549610008AA6F /* Frameworks */,
-				9314C55D1A7549610008AA6F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9314C5611A7549620008AA6F /* PBXTargetDependency */,
-			);
-			name = "ogam-januaryTests";
-			productName = "ogam-januaryTests";
-			productReference = 9314C55F1A7549620008AA6F /* ogam-januaryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -160,10 +98,6 @@
 				TargetAttributes = {
 					9314C54B1A7549610008AA6F = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					9314C55E1A7549610008AA6F = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 9314C54B1A7549610008AA6F;
 					};
 				};
 			};
@@ -181,7 +115,6 @@
 			projectRoot = "";
 			targets = (
 				9314C54B1A7549610008AA6F /* ogam-january */,
-				9314C55E1A7549610008AA6F /* ogam-januaryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -191,15 +124,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9314C5571A7549610008AA6F /* Images.xcassets in Resources */,
-				9314C55A1A7549610008AA6F /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9314C55D1A7549610008AA6F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				93E145AA1A7719C80093E7FE /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,39 +135,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9314C5551A7549610008AA6F /* main.m in Sources */,
-				9314C5531A7549610008AA6F /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9314C55B1A7549610008AA6F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9314C5661A7549620008AA6F /* ogam_januaryTests.m in Sources */,
+				9314C5551A7549610008AA6F /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9314C5611A7549620008AA6F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9314C54B1A7549610008AA6F /* ogam-january */;
-			targetProxy = 9314C5601A7549620008AA6F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9314C5581A7549610008AA6F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9314C5591A7549610008AA6F /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9314C5671A7549620008AA6F /* Debug */ = {
@@ -326,6 +223,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "ogam-january/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -337,45 +238,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "ogam-january/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		9314C56D1A7549620008AA6F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ogam-januaryTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ogam-january.app/Contents/MacOS/ogam-january";
-			};
-			name = Debug;
-		};
-		9314C56E1A7549620008AA6F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ogam-januaryTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ogam-january.app/Contents/MacOS/ogam-january";
 			};
 			name = Release;
 		};
@@ -398,14 +267,7 @@
 				9314C56B1A7549620008AA6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		9314C56C1A7549620008AA6F /* Build configuration list for PBXNativeTarget "ogam-januaryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9314C56D1A7549620008AA6F /* Debug */,
-				9314C56E1A7549620008AA6F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
