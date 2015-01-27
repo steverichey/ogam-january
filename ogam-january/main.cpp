@@ -176,6 +176,7 @@ int main(int argc, const char * argv[]) {
         SDL_DestroyWindow(window);
         IMG_Quit();
         TTF_Quit();
+        Mix_Quit();
         SDL_Quit();
         return 1;
     }
@@ -199,6 +200,7 @@ int main(int argc, const char * argv[]) {
         SDL_DestroyWindow(window);
         IMG_Quit();
         TTF_Quit();
+        Mix_CloseAudio();
         SDL_Quit();
         return 1;
     }
