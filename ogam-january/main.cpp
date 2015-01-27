@@ -13,12 +13,14 @@
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
-#define TILE_SIZE 16
+#define TILE_SIZE 32
 #define MOVE_SPEED 2
 #define DOUBLE_MOVE_SPEED MOVE_SPEED * 2
 #define ANGLE_SPEED sqrt(DOUBLE_MOVE_SPEED)
 #define FONT_SIZE 32
 #define FONT_OFFSET 16
+#define SCORE_PREFIX "Score "
+#define ENTITY_SIZE 32
 
 // log anything to the console
 void log(const std::string &message) {
@@ -101,8 +103,6 @@ SDL_Texture* render_text(const std::string &message,TTF_Font *font, SDL_Color co
 
 // entry point
 int main(int argc, const char * argv[]) {
-    log("Beginning game...");
-    
     // initialize SDL
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         log_error("SDL Init Error");
@@ -124,7 +124,7 @@ int main(int argc, const char * argv[]) {
     }
     
     // create a window
-    SDL_Window *window = SDL_CreateWindow("ogam-january", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window *window = SDL_CreateWindow("ogam-january", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     
     // verify window
     if (window == nullptr){
@@ -151,7 +151,10 @@ int main(int argc, const char * argv[]) {
     std::string bg_img_path = "Resources/bg.png";
     SDL_Texture *background = load_texture(bg_img_path, renderer);
     
-    if (player == nullptr || background == nullptr) {
+    std::string enemy_img_path = "Resources/enemy.png";
+    SDL_Texture *enemy = load_texture(enemy_img_path, renderer);
+    
+    if (player == nullptr || background == nullptr || enemy == nullptr) {
         log_error("Load texture error!");
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
@@ -159,16 +162,25 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     
+    // score tracking
+    int score = 0;
+    
     // load font
     std::string font_path = "Resources/ivory.ttf";
     TTF_Font *game_font = load_font(font_path, FONT_SIZE);
     SDL_Color font_color = {255, 0, 255, 255};
-    SDL_Texture *text_texture = render_text("Hello", game_font, font_color, renderer);
+    SDL_Texture *text_texture = render_text(SCORE_PREFIX, game_font, font_color, renderer);
     
     int player_w, player_h;
     SDL_QueryTexture(player, nullptr, nullptr, &player_w, &player_h);
     int player_x = (SCREEN_WIDTH - player_w) / 2;
     int player_y = (SCREEN_HEIGHT - player_h) / 2;
+    
+    // enemy position
+    int enemy_x = 0;
+    int enemy_y = 0;
+    int enemy_move_x = -1;
+    int enemy_move_y = -1;
     
     // calculate the number of tiles to fill the screen
     int xTiles = SCREEN_WIDTH / TILE_SIZE;
@@ -259,6 +271,7 @@ int main(int argc, const char * argv[]) {
             player_x -= MOVE_SPEED;
         }
         
+        // player bounds checking
         if (player_x < 0) {
             player_x = 0;
         }
@@ -275,15 +288,42 @@ int main(int argc, const char * argv[]) {
             player_y = SCREEN_HEIGHT - player_h;
         }
         
+        // enemy positioning
+        enemy_x += enemy_move_x;
+        enemy_y += enemy_move_y;
+        
+        if (enemy_x < 0) {
+            enemy_move_x = 1;
+            //enemy_move_x += 1;
+        }
+        
+        if (enemy_x > SCREEN_WIDTH - ENTITY_SIZE) {
+            enemy_move_x = -1;
+            //enemy_move_x += 1;
+        }
+        
+        if (enemy_y < 0) {
+            enemy_move_y = 1;
+            //enemy_move_y += 1;
+        }
+        
+        if (enemy_y > SCREEN_HEIGHT - ENTITY_SIZE) {
+            enemy_move_y = -1;
+            //enemy_move_y += 1;
+        }
+        
         // clear renderer
         SDL_RenderClear(renderer);
         
         // render tiles to cover screen
-        for (int i = 0; i < xTiles * yTiles; ++i){
+        for (int i = 0; i < xTiles * yTiles; i++) {
             bg_x = i % xTiles;
             bg_y = i / xTiles;
             render_texture(background, renderer, bg_x * TILE_SIZE, bg_y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
         }
+        
+        // draw the enemy
+        render_texture(enemy, renderer, enemy_x, enemy_y);
         
         // draw the player
         render_texture(player, renderer, player_x, player_y);
@@ -291,19 +331,32 @@ int main(int argc, const char * argv[]) {
         // draw the text
         render_texture(text_texture, renderer, FONT_OFFSET, FONT_OFFSET);
         
+        // lose state checking
+        if (player_x + ENTITY_SIZE > enemy_x) {
+            if (player_y + ENTITY_SIZE > enemy_y) {
+                if (player_x < enemy_x + ENTITY_SIZE) {
+                    if (player_y < enemy_y + ENTITY_SIZE) {
+                        abort();
+                    }
+                }
+            }
+        }
+        
         // render things!
         SDL_RenderPresent(renderer);
     }
     
+    // close down game
     TTF_CloseFont(game_font);
+    SDL_DestroyTexture(enemy);
     SDL_DestroyTexture(player);
+    SDL_DestroyTexture(background);
+    SDL_DestroyTexture(text_texture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
-    
-    log("Game over!");
     
     return 0;
 }
