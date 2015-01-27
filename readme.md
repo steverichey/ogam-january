@@ -8,4 +8,4 @@ It's not playable yet! Come back later.
 
 # License
 
-&copy; 2014 [Float Mobile Learning](http://floatlearning.com/). Shared under an [MIT license](https://en.wikipedia.org/wiki/MIT_License). See [license.md](./license.md) for details.
+&copy; 2014 [Steve Richey](http://www.steverichey.com/). Shared under an [MIT license](https://en.wikipedia.org/wiki/MIT_License). See [license.md](./license.md) for details.
