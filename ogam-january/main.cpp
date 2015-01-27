@@ -11,8 +11,12 @@
 #import <SDL2_image/SDL_image.h>
 #import <SDL2_ttf/SDL_ttf.h>
 
-#define SCREEN_WIDTH  640
+#define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
+#define TILE_SIZE 16
+#define MOVE_SPEED 2
+#define DOUBLE_MOVE_SPEED MOVE_SPEED * 2
+#define ANGLE_SPEED sqrt(DOUBLE_MOVE_SPEED)
 
 // log anything to the console
 void log(const std::string &message) {
@@ -71,6 +75,13 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     
+    // initialize SDL_Image
+    if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
+        log_error("IMG_Init error");
+        SDL_Quit();
+        return 1;
+    }
+    
     // create a window
     SDL_Window *window = SDL_CreateWindow("ogam-january", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     
@@ -93,11 +104,14 @@ int main(int argc, const char * argv[]) {
     }
     
     // load textures
-    std::string resource_path = "Resources/player.bmp";
-    SDL_Texture *player = load_texture(resource_path, renderer);
+    std::string player_img_path = "Resources/player.png";
+    SDL_Texture *player = load_texture(player_img_path, renderer);
     
-    if (player == nullptr) {
-        log_error("Player load texture error!");
+    std::string bg_img_path = "Resources/bg.png";
+    SDL_Texture *background = load_texture(bg_img_path, renderer);
+    
+    if (player == nullptr || background == nullptr) {
+        log_error("Load texture error!");
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();
@@ -109,14 +123,116 @@ int main(int argc, const char * argv[]) {
     int player_x = (SCREEN_WIDTH - player_w) / 2;
     int player_y = (SCREEN_HEIGHT - player_h) / 2;
     
-    render_texture(player, renderer, player_x, player_y);
+    // calculate the number of tiles to fill the screen
+    int xTiles = SCREEN_WIDTH / TILE_SIZE;
+    int yTiles = SCREEN_HEIGHT / TILE_SIZE;
+    
+    // bg position values
+    int bg_x = 0;
+    int bg_y = 0;
+    
     SDL_RenderPresent(renderer);
     
-    SDL_Delay(2000);
+    // create event for input
+    SDL_Event event;
+    bool quit = false;
+    
+    // input tracking
+    bool down_pressed  = false;
+    bool up_pressed    = false;
+    bool right_pressed = false;
+    bool left_pressed  = false;
+    
+    // MAIN GAME LOOP YO
+    while (!quit) {
+        // use input to set _pressed flags
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                quit = true;
+            }
+            
+            if (event.type == SDL_KEYDOWN) {
+                switch (event.key.keysym.sym) {
+                    case SDLK_ESCAPE:
+                        quit = true;
+                        break;
+                    case SDLK_DOWN:
+                        down_pressed = true;
+                        break;
+                    case SDLK_UP:
+                        up_pressed = true;
+                        break;
+                    case SDLK_RIGHT:
+                        right_pressed = true;
+                        break;
+                    case SDLK_LEFT:
+                        left_pressed = true;
+                        break;
+                }
+            }
+            
+            if (event.type == SDL_KEYUP) {
+                switch (event.key.keysym.sym) {
+                    case SDLK_DOWN:
+                        down_pressed = false;
+                        break;
+                    case SDLK_UP:
+                        up_pressed = false;
+                        break;
+                    case SDLK_RIGHT:
+                        right_pressed = false;
+                        break;
+                    case SDLK_LEFT:
+                        left_pressed = false;
+                        break;
+                }
+            }
+        }
+        
+        // pressed flag processing
+        if (down_pressed && right_pressed) {
+            player_x += ANGLE_SPEED;
+            player_y += ANGLE_SPEED;
+        } else if (down_pressed && left_pressed) {
+            player_x -= ANGLE_SPEED;
+            player_y += ANGLE_SPEED;
+        } else if (up_pressed && right_pressed) {
+            player_x += ANGLE_SPEED;
+            player_y -= ANGLE_SPEED;
+        } else if (up_pressed && left_pressed) {
+            player_x -= ANGLE_SPEED;
+            player_y -= ANGLE_SPEED;
+        } else if (down_pressed) {
+            player_y += MOVE_SPEED;
+        } else if (up_pressed) {
+            player_y -= MOVE_SPEED;
+        } else if (right_pressed) {
+            player_x += MOVE_SPEED;
+        } else if (left_pressed) {
+            player_x -= MOVE_SPEED;
+        }
+        
+        // clear renderer
+        SDL_RenderClear(renderer);
+        
+        // render tiles to cover screen
+        for (int i = 0; i < xTiles * yTiles; ++i){
+            bg_x = i % xTiles;
+            bg_y = i / xTiles;
+            render_texture(background, renderer, bg_x * TILE_SIZE, bg_y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        }
+        
+        // draw the player
+        render_texture(player, renderer, player_x, player_y);
+        
+        // render things!
+        SDL_RenderPresent(renderer);
+    }
     
     SDL_DestroyTexture(player);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    IMG_Quit();
     SDL_Quit();
     
     log("Game over!");
