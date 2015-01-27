@@ -405,12 +405,14 @@ int main(int argc, const char * argv[]) {
     }
     
     // close down game
+    Mix_FreeChunk(bounce);
     TTF_CloseFont(game_font);
     SDL_DestroyTexture(enemy);
     SDL_DestroyTexture(player);
     SDL_DestroyTexture(background);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    Mix_Quit();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
