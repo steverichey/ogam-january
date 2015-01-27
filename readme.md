@@ -1,4 +1,4 @@
-[ogam-january](https://github.com/steverichey/ogam-january)
+# [ogam-january](https://github.com/steverichey/ogam-january)
 
 This is a C++ game using [SDL](https://www.libsdl.org/). This is my January submission for [One Game A Month](http://www.onegameamonth.com/).
 
