@@ -190,8 +190,6 @@ int main(int argc, const char * argv[]) {
     int bg_x = 0;
     int bg_y = 0;
     
-    SDL_RenderPresent(renderer);
-    
     // create event for input
     SDL_Event event;
     bool quit = false;
