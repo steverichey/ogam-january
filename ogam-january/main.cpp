@@ -118,6 +118,7 @@ int main(int argc, const char * argv[]) {
     // initialize SDL_TTF
     if (TTF_Init() != 0) {
         log_error("TTF_Init error");
+        IMG_Quit();
         SDL_Quit();
         return 1;
     }
@@ -128,6 +129,8 @@ int main(int argc, const char * argv[]) {
     // verify window
     if (window == nullptr){
         log_error("SDL Create Window Error");
+        IMG_Quit();
+        TTF_Quit();
         SDL_Quit();
         return 1;
     }
@@ -139,6 +142,8 @@ int main(int argc, const char * argv[]) {
     if (renderer == nullptr){
         log_error("SDL Create Renderer Error");
         SDL_DestroyWindow(window);
+        IMG_Quit();
+        TTF_Quit();
         SDL_Quit();
         return 1;
     }
@@ -157,6 +162,8 @@ int main(int argc, const char * argv[]) {
         log_error("Load texture error!");
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
+        IMG_Quit();
+        TTF_Quit();
         SDL_Quit();
         return 1;
     }
@@ -170,6 +177,19 @@ int main(int argc, const char * argv[]) {
     std::string font_path = "Resources/ivory.ttf";
     TTF_Font *game_font = load_font(font_path, FONT_SIZE);
     SDL_Color font_color = {255, 0, 255, 255};
+    
+    if (game_font == nullptr) {
+        log_error("Font load error");
+        SDL_DestroyTexture(player);
+        SDL_DestroyTexture(background);
+        SDL_DestroyTexture(enemy);
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        IMG_Quit();
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
     
     int player_w, player_h;
     SDL_QueryTexture(player, nullptr, nullptr, &player_w, &player_h);
