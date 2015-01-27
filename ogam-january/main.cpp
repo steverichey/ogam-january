@@ -124,6 +124,15 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     
+    // initialize SDL_Mixer
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) != 0) {
+        log_error("Mix_OpenAudio error!");
+        IMG_Quit();
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
+    
     // create a window
     SDL_Window *window = SDL_CreateWindow("ogam-january", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     
@@ -132,6 +141,7 @@ int main(int argc, const char * argv[]) {
         log_error("SDL Create Window Error");
         IMG_Quit();
         TTF_Quit();
+        Mix_Quit();
         SDL_Quit();
         return 1;
     }
@@ -145,6 +155,7 @@ int main(int argc, const char * argv[]) {
         SDL_DestroyWindow(window);
         IMG_Quit();
         TTF_Quit();
+        Mix_Quit();
         SDL_Quit();
         return 1;
     }
