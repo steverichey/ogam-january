@@ -10,6 +10,7 @@
 #import <SDL2/SDL.h>
 #import <SDL2_image/SDL_image.h>
 #import <SDL2_ttf/SDL_ttf.h>
+#import <SDL2_mixer/SDL_mixer.h>
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480

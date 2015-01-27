@@ -13,6 +13,7 @@
 		9314C5801A754C3F0008AA6F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9314C5711A7549BA0008AA6F /* SDL2.framework */; };
 		93E145AA1A7719C80093E7FE /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 93E145A91A7719C80093E7FE /* Resources */; };
 		93E145AC1A773FA00093E7FE /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93E145AB1A773FA00093E7FE /* AppIcon.xcassets */; };
+		93E145AE1A77EA730093E7FE /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E145AD1A77EA730093E7FE /* SDL2_mixer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9314C57C1A754BCE0008AA6F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93E145A91A7719C80093E7FE /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		93E145AB1A773FA00093E7FE /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		93E145AD1A77EA730093E7FE /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E145AE1A77EA730093E7FE /* SDL2_mixer.framework in Frameworks */,
 				9314C57E1A754C3F0008AA6F /* SDL2_image.framework in Frameworks */,
 				9314C57F1A754C3F0008AA6F /* SDL2_ttf.framework in Frameworks */,
 				9314C5801A754C3F0008AA6F /* SDL2.framework in Frameworks */,
@@ -43,6 +46,7 @@
 		9314C5431A7549610008AA6F = {
 			isa = PBXGroup;
 			children = (
+				93E145AD1A77EA730093E7FE /* SDL2_mixer.framework */,
 				9314C56F1A7549BA0008AA6F /* SDL2_image.framework */,
 				9314C5701A7549BA0008AA6F /* SDL2_ttf.framework */,
 				9314C5711A7549BA0008AA6F /* SDL2.framework */,
