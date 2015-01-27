@@ -17,6 +17,8 @@
 #define MOVE_SPEED 2
 #define DOUBLE_MOVE_SPEED MOVE_SPEED * 2
 #define ANGLE_SPEED sqrt(DOUBLE_MOVE_SPEED)
+#define FONT_SIZE 32
+#define FONT_OFFSET 16
 
 // log anything to the console
 void log(const std::string &message) {
@@ -37,6 +39,16 @@ SDL_Texture* load_texture(const std::string filename, SDL_Renderer *renderer) {
     }
     
     return texture;
+}
+
+TTF_Font* load_font(const std::string file_name, int font_size) {
+    TTF_Font *font = TTF_OpenFont(file_name.c_str(), font_size);
+    
+    if (font == nullptr) {
+        log_error("TTF open font error");
+    }
+    
+    return font;
 }
 
 // render a texture at (x,y) with size w x h
@@ -65,6 +77,28 @@ void render_texture(SDL_Texture *texture, SDL_Renderer *renderer, int x, int y) 
     render_texture(texture, renderer, x, y, w, h);
 }
 
+SDL_Texture* render_text(const std::string &message,TTF_Font *font, SDL_Color color, SDL_Renderer *renderer) {
+    // render text to a surface
+    SDL_Surface *surface = TTF_RenderText_Blended(font, message.c_str(), color);
+    
+    if (surface == nullptr){
+        TTF_CloseFont(font);
+        log_error("TTF_RenderText error");
+        return nullptr;
+    }
+    
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+    
+    if (texture == nullptr){
+        log_error("CreateTexture error");
+    }
+    
+    // clean up
+    SDL_FreeSurface(surface);
+    
+    return texture;
+}
+
 // entry point
 int main(int argc, const char * argv[]) {
     log("Beginning game...");
@@ -78,6 +112,13 @@ int main(int argc, const char * argv[]) {
     // initialize SDL_Image
     if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
         log_error("IMG_Init error");
+        SDL_Quit();
+        return 1;
+    }
+    
+    // initialize SDL_TTF
+    if (TTF_Init() != 0) {
+        log_error("TTF_Init error");
         SDL_Quit();
         return 1;
     }
@@ -117,6 +158,12 @@ int main(int argc, const char * argv[]) {
         SDL_Quit();
         return 1;
     }
+    
+    // load font
+    std::string font_path = "Resources/ivory.ttf";
+    TTF_Font *game_font = load_font(font_path, FONT_SIZE);
+    SDL_Color font_color = {255, 0, 255, 255};
+    SDL_Texture *text_texture = render_text("Hello", game_font, font_color, renderer);
     
     int player_w, player_h;
     SDL_QueryTexture(player, nullptr, nullptr, &player_w, &player_h);
@@ -212,6 +259,22 @@ int main(int argc, const char * argv[]) {
             player_x -= MOVE_SPEED;
         }
         
+        if (player_x < 0) {
+            player_x = 0;
+        }
+        
+        if (player_x > SCREEN_WIDTH - player_w) {
+            player_x = SCREEN_WIDTH - player_w;
+        }
+        
+        if (player_y < 0) {
+            player_y = 0;
+        }
+        
+        if (player_y > SCREEN_HEIGHT - player_h) {
+            player_y = SCREEN_HEIGHT - player_h;
+        }
+        
         // clear renderer
         SDL_RenderClear(renderer);
         
@@ -225,13 +288,18 @@ int main(int argc, const char * argv[]) {
         // draw the player
         render_texture(player, renderer, player_x, player_y);
         
+        // draw the text
+        render_texture(text_texture, renderer, FONT_OFFSET, FONT_OFFSET);
+        
         // render things!
         SDL_RenderPresent(renderer);
     }
     
+    TTF_CloseFont(game_font);
     SDL_DestroyTexture(player);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
     
