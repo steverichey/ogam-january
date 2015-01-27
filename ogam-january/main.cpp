@@ -217,6 +217,8 @@ int main(int argc, const char * argv[]) {
     int enemy_move_y = -1;
     int enemy_move_x_speed = 1;
     int enemy_move_y_speed = 1;
+    bool bounced = false;
+    
     Mix_Chunk *bounce = Mix_LoadWAV("Resources/bounce.wav");
     
     //if (music == nullptr || bounce == nullptr) {
@@ -346,21 +348,33 @@ int main(int argc, const char * argv[]) {
         if (enemy_x < 0) {
             enemy_move_x = 1;
             enemy_move_x_speed++;
+            bounced = true;
         }
         
         if (enemy_x > SCREEN_WIDTH - ENTITY_SIZE) {
             enemy_move_x = -1;
             enemy_move_x_speed++;
+            bounced = true;
         }
         
         if (enemy_y < 0) {
             enemy_move_y = 1;
             enemy_move_y_speed++;
+            bounced = true;
         }
         
         if (enemy_y > SCREEN_HEIGHT - ENTITY_SIZE) {
             enemy_move_y = -1;
             enemy_move_y_speed++;
+            bounced = true;
+        }
+        
+        if (bounced) {
+            if (Mix_PlayChannel(-1, bounce, 0) != 0) {
+                log_error("Play sound error: ");
+            }
+            
+            bounced = false;
         }
         
         // update score
