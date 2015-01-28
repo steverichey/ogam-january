@@ -29,7 +29,7 @@ void log(const std::string &message) {
     std::cout << message << std::endl;
 }
 
-// log anything to the console, appends the SDL error message
+// log errors to the console, appends the SDL error message
 void log_error(const std::string &message) {
     log(message + SDL_GetError());
 }
@@ -219,10 +219,11 @@ int main(int argc, const char * argv[]) {
     int enemy_move_y_speed = 1;
     bool bounced = false;
     
+    // sound FX
+    Mix_Music *music = Mix_LoadMUS("Resources/haran.wav");
     Mix_Chunk *bounce = Mix_LoadWAV("Resources/bounce.wav");
     
-    //if (music == nullptr || bounce == nullptr) {
-    if (bounce == nullptr) {
+    if (music == nullptr || bounce == nullptr) {
         log_error("Sound load error");
         TTF_CloseFont(game_font);
         SDL_DestroyTexture(player);
@@ -254,6 +255,10 @@ int main(int argc, const char * argv[]) {
     bool up_pressed    = false;
     bool right_pressed = false;
     bool left_pressed  = false;
+    
+    // start some tunes!
+    
+    Mix_PlayMusic(music, 100);
     
     // MAIN GAME LOOP YO
     while (!quit) {
@@ -422,6 +427,7 @@ int main(int argc, const char * argv[]) {
     
     // close down game
     Mix_FreeChunk(bounce);
+    Mix_FreeMusic(music);
     TTF_CloseFont(game_font);
     SDL_DestroyTexture(enemy);
     SDL_DestroyTexture(player);
