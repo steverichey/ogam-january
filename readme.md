@@ -2,6 +2,8 @@
 
 This is a C++ game using [SDL](https://www.libsdl.org/). This is my January submission for [One Game A Month](http://www.onegameamonth.com/). It was coded on a Mac using Xcode. Art was done in Photoshop. The lone sound effect was made using the [BFXR app](http://www.bfxr.net/).
 
+![](./screenshot.png)
+
 # How to Play
 
 This game is available for Mac OS X only. You can [download it](https://github.com/steverichey/ogam-january/releases/download/Release/dont-crash-the-game.dmg) and then extract it and run it anywhere.
