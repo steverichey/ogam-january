@@ -134,7 +134,7 @@ int main(int argc, const char * argv[]) {
     }
     
     // create a window
-    SDL_Window *window = SDL_CreateWindow("ogam-january", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window *window = SDL_CreateWindow("Don't Crash the Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     
     // verify window
     if (window == nullptr){
@@ -376,7 +376,7 @@ int main(int argc, const char * argv[]) {
         
         if (bounced) {
             if (Mix_PlayChannel(-1, bounce, 0) != 0) {
-                log_error("Play sound error: ");
+                log_error("Play sound error");
             }
             
             bounced = false;
