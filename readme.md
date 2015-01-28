@@ -1,10 +1,18 @@
 # [ogam-january](https://github.com/steverichey/ogam-january)
 
-This is a C++ game using [SDL](https://www.libsdl.org/). This is my January submission for [One Game A Month](http://www.onegameamonth.com/). It was coded on a Mac using Xcode. Art was done in Photoshop. The sound effect was made using the [BFXR app](http://www.bfxr.net/).
+This is a C++ game using [SDL](https://www.libsdl.org/). This is my January submission for [One Game A Month](http://www.onegameamonth.com/). It was coded on a Mac using Xcode. Art was done in Photoshop. The lone sound effect was made using the [BFXR app](http://www.bfxr.net/).
 
 # How to Play
 
-It's not playable yet! Come back later.
+This game is available for Mac OS X only. You can [download it](https://github.com/steverichey/ogam-january/releases/download/Release/dont-crash-the-game.dmg) and then extract it and run it anywhere.
+
+# Controls
+
+Use up, down, left, and right to move. Press Escape to quit.
+
+# Rules
+
+Don't crash the game!
 
 # Notes
 
